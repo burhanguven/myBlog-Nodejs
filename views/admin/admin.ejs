@@ -1,0 +1,49 @@
+<% include ../partials/header.ejs %>
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https://cdn.pixabay.com/photo/2019/04/26/02/35/raspberries-4156556_960_720.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    <h1>Admin Dashboard</h1>
+                    <span class="subheading">This is what I do.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <% adminActions.forEach( (action)=>{ %>
+        <div class="row">
+            <div class="col-lg-4 mx-auto">
+                <button id="<%= action.actionId %>" onclick="catchID(this.id)" type="button" class="btn btn-outline-primary btn-block"><%= action.displayName %></button>
+            </div>
+        </div>
+    <% }); %>
+</div>
+<script>
+    function catchID(clicked_id){
+
+       //bu kısım dinamik hale çevirilecektir.
+        if(clicked_id==1)
+        {
+            window.location.href='changeHomeImage';
+            return false;
+        }
+        else if(clicked_id==2)
+        {
+            window.location.href='changeAboutImage';
+            return false;
+        }
+        else if(clicked_id==3)
+        {
+            window.location.href='changeAboutText';
+            return false;
+        }
+    }
+</script>
+<% include ../partials/footer.ejs %>

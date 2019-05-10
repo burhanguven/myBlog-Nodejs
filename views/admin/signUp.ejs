@@ -1,0 +1,40 @@
+<% include ../partials/header.ejs %>
+
+<style>
+    #mainNav .navbar-brand{
+        color:black
+    }
+    #mainNav .navbar-nav > li.nav-item >a{
+        color:black
+    }
+    #mainNav .navbar-brand:hover{
+        color:gray
+    }
+    #mainNav .navbar-nav > li.nav-item >a:hover{
+        color:gray
+    }
+</style>
+
+<div class="container" style="margin-top: 150px; width:400px;">
+    <h1 sytle style="text-align:center;">Sign Up Form</h1>
+    <h3 style="text-align:center; color:red; font-size: small">Only For Admins</h3>
+
+    <form action="/signUp" method="post">
+        <div class="form-group">
+            <label for="emailAddress">Email address</label>
+            <input type="email" class="form-control" id="emailAddress" aria-describedby="emailHelp" placeholder="Enter email" name="username">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="userPassword">Password</label>
+            <input type="password" class="form-control" id="userPassword" placeholder="Password" name="password">
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary" >Submit</button>
+    </form>
+</div>
+
+<% include ../partials/footer.ejs %>
