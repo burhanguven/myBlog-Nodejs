@@ -12,7 +12,7 @@ const BlogSchema=new mongoose.Schema({
         type:String,
         required:"Cannot be empty"
     };
-    titcomImage:{
+    comImage:{
         type:String,
         required:"Cannot be empty"
     };

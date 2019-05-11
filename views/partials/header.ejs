@@ -49,13 +49,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/resume">Resume</a>
                 </li>
+                <% if(!currentUser){ %>
                 <li class="nav-item">
                     <a class="nav-link" href="/signIn">Sing In</a>
                 </li>
+                <%} else {%>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin"><%= currentUser.username %></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/signOut">Sing Out</a>
                 </li>
+
+                <%}%>
             </ul>
         </div>
     </div>

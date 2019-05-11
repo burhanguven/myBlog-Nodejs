@@ -11,6 +11,7 @@ const express=require('express'),
 //routes
 const indexRoutes=require("./routes/indexRoutes");
 const adminRoutes=require("./routes/adminRoutes");
+const blogRoutes=require("./routes/blogRoutes");
 
 //app config
 mongoose.connect("mongodb://localhost/BlogApp", { useNewUrlParser: true });
@@ -33,9 +34,16 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//share current user info within all routes
+app.use((req,res,next)=>{
+    res.locals.currentUser=req.user;
+    next();
+});
+
 //Routes Using
 app.use(indexRoutes);
 app.use(adminRoutes);
+app.use(blogRoutes);
 
 const server=app.listen(3000,(err)=>{
     if(err)
