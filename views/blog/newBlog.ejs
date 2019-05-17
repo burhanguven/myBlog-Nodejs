@@ -17,9 +17,33 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
     <!-- Custom styles for this template -->
     <link href="css/main.css" rel="stylesheet">
 
+<script>
+    $(document).ready(function () {
+        $("#myButton").click( function(){
+            var blogTitle=$("#blogTitle").val();
+            var comSentence=$("#comSentence").val();
+            var comImage=$("#comImage").val();
+            var blog=CKEDITOR.instances.myTextAria.getData();
+
+            var data={
+                blogTitle:blogTitle,
+                comSentence:comSentence,
+                comImage:comImage,
+                blog:blog
+            };
+            $.post('addNewBlog',{data:data})
+                .then(function (addNewBlog) {
+                    console.log(addNewBlog);
+                });
+
+        });
+    });
+</script>
 </head>
 
 <style>
@@ -82,6 +106,7 @@
 
 
 <br><br><br>
+
 <!-- Blog add-->
 <div class="container" >
     <h2 style="text-align: center; margin-bottom: 40px;">Add a New Blog</h2>
@@ -91,20 +116,21 @@
             <input type="text" class="form-control" id="blogTitle" placeholder="Blog Title">
         </div>
         <div class="form-group">
-            <label for="blogTitle">Blog Commercial Sentence</label>
-            <input type="text" class="form-control" id="comImage" placeholder="Blog Commercial Sentence">
+            <label for="comSentence">Blog Commercial Sentence</label>
+            <input type="text" class="form-control" id="comSentence" placeholder="Blog Commercial Sentence">
         </div>
         <div class="form-group">
-            <label for="blogTitle">Blog Commercial Image</label>
-            <input type="text" class="form-control" id="blogTitle" placeholder="Blog Image">
+            <label for="comImage">Blog Commercial Image</label>
+            <input type="text" class="form-control" id="comImage" placeholder="Blog Image">
         </div>
-        <div>
-            <textarea name="editor" id="myTextAria" cols="30" rows="10"></textarea>
-            <br>
-            <button id="myButton" class="btn btn-primary">Submit</button>
-        </div>
+
+        <textarea name="editor" id="myTextAria" cols="30" rows="10"></textarea>
+        <br>
+        <button id="myButton" class="btn btn-primary">Submit</button>
     </form>
 </div>
+
+
 
 <!-- Footer -->
 <footer>
@@ -152,4 +178,6 @@
 <script>
     CKEDITOR.replace('editor');
 </script>
+
+
 
