@@ -1,7 +1,8 @@
 const express=require('express');
+const Blog=require('../models/blogModel');
 const router=express.Router();
 
-let data=[
+/*let data=[
     {
         postTitle:'Makale Turkce',
         postSubTitle:'İlk turkçe makale denemesi',
@@ -17,11 +18,19 @@ let data=[
         postSubTitle:'Geçmişte ve gelecekte merak ettiğiniz konular bu makalede',
         postImage:'https://images.unsplash.com/photo-1556634648-7110f11a3559?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80'
     }
-];
+];*/
+
 //render edilen data da {data:data} iknci data indexRotes.js dosyasında değişken diğeri ise render edilen sayfada gönderilen değişken
 router.get('/',(req,res)=>{
-    res.render('home.ejs',{data:data});
     console.log('/home');
+    Blog.find({},(err,foundBlogs)=>{
+        if(err){
+            console.log(err);
+        }else{
+            console.log("all Blogs");
+            res.render("home",{foundBlogs:foundBlogs});
+        }
+    })
 });
 
 router.get('/about',(req,res)=>{

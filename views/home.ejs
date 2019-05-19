@@ -17,24 +17,24 @@
 
 <!-- Main Content -->
 <div class="container">
-    <% data.forEach( (d)=>{ %>
+    <% foundBlogs.forEach( (blog)=>{ %>
     <div class="row">
         <div class="col-lg-3 col-md-2 mx-auto">
-            <img class="img-thumbnail" src="<%= d.postImage %>" alt="blog images">
+            <img class="img-thumbnail" src="<%= blog.comImage %>" alt="blog images">
         </div>
         <div class="col-lg-9 col-md-10 mx-auto">
             <div class="post-preview">
-                <a href="post.html">
+                <a href="/blogs/<%= blog._id%>">
                     <h2 class="post-title">
-                        <%= d.postTitle %>
+                        <%= blog.title %>
                     </h2>
                     <h3 class="post-subtitle">
-                        Problems look mighty small from 150 miles up
+                        <%= blog.comSentence%>
                     </h3>
                 </a>
                 <p class="post-meta">Posted by
                     <a href="#">Start Bootstrap</a>
-                    on September 24, 2019</p>
+                    <%= blog.date %> </p>
             </div>
             <hr>
         </div>

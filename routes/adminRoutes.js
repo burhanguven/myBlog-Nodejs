@@ -58,7 +58,7 @@ router.post('/signIn',passport.authenticate("local",{
 });
 
 //user kayıt
-router.post('/signUp', (req,res)=>{
+router.post('/signUp',isLoggedIn, (req,res)=>{
     let newUser=new User({username:req.body.username});
 
     User.register(newUser, req.body.password, (err,user)=>{
@@ -73,9 +73,16 @@ router.post('/signUp', (req,res)=>{
     console.log("post:/signUp -> /");
 });
 //çıkış
-router.get('/signOut',(req,res)=>{
+router.get('/signOut',isLoggedIn,(req,res)=>{
     req.logout();
     res.redirect('/');
 });
+//login olma kontrolü
+function isLoggedIn(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/signIn")
+}
 
 module.exports=router;
